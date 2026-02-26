@@ -109,7 +109,6 @@ h6,
 
 /* Shared popup system for validation + success/error */
 .solvix-popup-content {
-  position: relative;
   display: grid;
   gap: 1rem;
   width: min(92vw, 460px);
