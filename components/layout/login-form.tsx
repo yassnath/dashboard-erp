@@ -60,7 +60,7 @@ export function LoginForm() {
     <Card className="w-full max-w-md p-6 md:p-7">
       <div className="mb-5">
         <h1 className="text-2xl font-semibold">Login Solvix ERP</h1>
-        <p className="mt-1 text-sm text-muted-foreground">Masuk untuk mengakses dashboard ERP quantum.</p>
+        <p className="mt-1 text-sm text-muted-foreground">Masuk untuk mengakses dashboard.</p>
       </div>
       <form action={handleSubmit} className="space-y-4">
         <div className="mt-4 space-y-1.5">

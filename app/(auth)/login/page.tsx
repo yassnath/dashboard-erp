@@ -23,7 +23,7 @@ export default async function LoginPage() {
           <Image src="/logo.png" alt="Solvix ERP" width={40} height={40} className="rounded-xl" />
           <div>
             <p className="font-orbitron text-sm">SOLVIX ERP</p>
-            <p className="text-xs text-muted-foreground">Quantum Dashboard</p>
+            <p className="text-xs text-muted-foreground">Dashboard</p>
           </div>
         </div>
         <LoginForm />
