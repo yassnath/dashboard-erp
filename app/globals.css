@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f8ff;
+  --foreground: #061224;
+  --muted-foreground: #48637e;
+  --panel: rgba(239, 246, 255, 0.72);
+  --border: rgba(11, 59, 98, 0.22);
+  --accent: #00d8ff;
+  --accent-soft: #5de5ff;
+  --grid-line: rgba(31, 105, 162, 0.1);
+  --tooltip-bg: rgba(241, 245, 249, 0.95);
+  --tooltip-border: rgba(30, 64, 175, 0.25);
+  --tooltip-text: #0f172a;
+  --chart-1: #00d8ff;
+  --chart-2: #0ea5e9;
+  --chart-3: #22c55e;
+  --chart-4: #f59e0b;
+  --chart-5: #f97316;
+  --chart-6: #a78bfa;
+  --chart-7: #f43f5e;
+  --chart-8: #14b8a6;
+}
+
+.dark {
+  --background: #060b18;
+  --foreground: #edf8ff;
+  --muted-foreground: #8da5bd;
+  --panel: rgba(14, 26, 47, 0.65);
+  --border: rgba(103, 162, 204, 0.24);
+  --accent: #2ce6ff;
+  --accent-soft: #84f0ff;
+  --grid-line: rgba(34, 136, 190, 0.16);
+  --tooltip-bg: rgba(13, 20, 37, 0.92);
+  --tooltip-border: rgba(125, 238, 255, 0.2);
+  --tooltip-text: #ffffff;
+  --chart-1: #2ce6ff;
+  --chart-2: #38bdf8;
+  --chart-3: #4ade80;
+  --chart-4: #fbbf24;
+  --chart-5: #fb923c;
+  --chart-6: #c4b5fd;
+  --chart-7: #fb7185;
+  --chart-8: #2dd4bf;
+}
+
+:root[data-contrast="high"] {
+  --background: #020612;
+  --foreground: #ffffff;
+  --muted-foreground: #d6e9ff;
+  --panel: rgba(8, 16, 28, 0.9);
+  --border: rgba(123, 236, 255, 0.64);
+  --accent: #55f7ff;
+  --accent-soft: #89faff;
+  --grid-line: rgba(95, 232, 255, 0.26);
+  --tooltip-bg: rgba(5, 10, 22, 0.98);
+  --tooltip-border: rgba(135, 249, 255, 0.6);
+  --tooltip-text: #ffffff;
+  --chart-1: #55f7ff;
+  --chart-2: #60a5fa;
+  --chart-3: #86efac;
+  --chart-4: #facc15;
+  --chart-5: #fb923c;
+  --chart-6: #d8b4fe;
+  --chart-7: #fb7185;
+  --chart-8: #5eead4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-panel: var(--panel);
+  --color-border: var(--border);
+  --font-sans: var(--font-space-grotesk);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px) 0 0 / 28px 28px,
+    radial-gradient(circle at 20% 0%, rgba(44, 230, 255, 0.22), transparent 38%),
+    radial-gradient(circle at 100% 40%, rgba(76, 210, 255, 0.17), transparent 34%),
+    var(--background);
+  color: var(--foreground);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-orbitron {
+  font-family: var(--font-orbitron), sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.glass {
+  background: var(--panel);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+/* Shared popup system for validation + success/error */
+.solvix-popup-content {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  width: min(92vw, 460px);
+  padding: 1.5rem;
+  border-radius: 1.5rem !important;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, var(--accent) 18%) !important;
+  background: color-mix(in srgb, var(--panel) 92%, transparent) !important;
+  box-shadow:
+    0 20px 60px rgba(2, 8, 24, 0.55),
+    0 0 0 1px color-mix(in srgb, var(--accent) 24%, transparent) inset !important;
+  backdrop-filter: blur(18px);
+}
+
+.solvix-popup-title {
+  font-family: var(--font-orbitron), sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.solvix-popup-description {
+  color: var(--muted-foreground) !important;
+}
+
+.solvix-popup-footer {
+  margin-top: 0.25rem !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 0.5rem !important;
+}
+
+.solvix-popup-btn {
+  height: 2.5rem !important;
+  border-radius: 1rem !important;
+  padding-inline: 1rem !important;
+  font-family: var(--font-space-grotesk), sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.solvix-popup-btn-neutral {
+  border: 1px solid color-mix(in srgb, var(--border) 82%, var(--accent) 18%) !important;
+  background: color-mix(in srgb, var(--panel) 88%, transparent) !important;
+  color: var(--foreground) !important;
+}
+
+.solvix-popup-btn-neutral:hover {
+  background: color-mix(in srgb, var(--panel) 72%, var(--accent) 28%) !important;
+}
+
+.solvix-popup-btn-primary {
+  background: var(--accent) !important;
+  color: #04111f !important;
+}
+
+.solvix-popup-btn-primary:hover {
+  background: var(--accent-soft) !important;
+}
+
+.solvix-popup-btn-danger {
+  background: #ff3b4f !important;
+  color: #ffffff !important;
+}
+
+.solvix-popup-btn-danger:hover {
+  background: #ff2340 !important;
+}
+
+.solvix-popup-content > button[aria-label="Close"],
+.solvix-popup-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  display: inline-flex;
+  height: 1.75rem;
+  width: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, var(--accent) 18%);
+  background: color-mix(in srgb, var(--panel) 90%, transparent);
+  color: var(--muted-foreground);
+}
+
+.solvix-popup-content > button[aria-label="Close"]:hover,
+.solvix-popup-close:hover {
+  background: color-mix(in srgb, var(--panel) 72%, var(--accent) 28%);
+  color: var(--foreground);
+}
+
+/* Centered feedback popup style (Sonner) */
+.solvix-toast-layer[data-sonner-toaster] {
+  left: 0 !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  transform: none !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.solvix-toast-layer[data-sonner-toaster]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, var(--background) 78%, #000 22%);
+  backdrop-filter: blur(8px);
+  z-index: -1;
+}
+
+.solvix-toast-layer[data-sonner-toaster] [data-sonner-toast] {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  backdrop-filter: none !important;
+}
+
+.solvix-toast-layer[data-sonner-toaster] [data-sonner-toast] > * {
+  pointer-events: auto;
+}
+
+@media (max-width: 600px) {
+  .solvix-popup-content {
+    width: calc(100vw - 2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

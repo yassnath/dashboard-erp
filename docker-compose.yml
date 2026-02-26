@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: solvix_erp
+      POSTGRES_USER: solvix
+      POSTGRES_PASSWORD: solvix
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql://solvix:solvix@postgres:5432/solvix_erp?schema=public
+      NEXTAUTH_SECRET: change-this-secret-in-production
+      NEXTAUTH_URL: http://localhost:3000
+    ports:
+      - "3000:3000"
+    command: sh -c "pnpm prisma:deploy && pnpm db:seed && pnpm start"
+
+volumes:
+  postgres_data:
