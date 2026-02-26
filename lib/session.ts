@@ -5,8 +5,13 @@ import { auth, type SessionUser } from "@/lib/auth";
 import { hasAnyRole } from "@/lib/permissions";
 
 export async function getSessionUser() {
-  const session = await auth();
-  return session?.user as SessionUser | null;
+  try {
+    const session = await auth();
+    return session?.user as SessionUser | null;
+  } catch (error) {
+    console.error("[Session] Failed to resolve user session:", error);
+    return null;
+  }
 }
 
 export async function requireSessionUser() {

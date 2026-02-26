@@ -5,7 +5,13 @@ import { LoginForm } from "@/components/layout/login-form";
 import { auth } from "@/lib/auth";
 
 export default async function LoginPage() {
-  const session = await auth();
+  let session: Awaited<ReturnType<typeof auth>> | null = null;
+  try {
+    session = await auth();
+  } catch (error) {
+    console.error("[LoginPage] Failed to resolve session:", error);
+  }
+
   if (session) {
     redirect("/app");
   }

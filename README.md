@@ -95,3 +95,14 @@ Solvix ERP is for organizations that outgrow disconnected tools and need:
 
 Architecture map and responsive wireframes are documented in:
 - [docs/PLAN.md](docs/PLAN.md)
+
+## Vercel Runtime Checklist
+
+For stable production behavior on Vercel, the deployment environment must include:
+- `DATABASE_URL` pointing to your production PostgreSQL instance
+- `NEXTAUTH_SECRET` (strong random string)
+- `NEXTAUTH_URL` set to your exact deployed URL (for example: `https://dashboarderp.vercel.app`)
+
+Database schema and demo identity must exist in the production database:
+- Run Prisma migrations (`prisma migrate deploy`)
+- Seed production/demo data when needed (`prisma db seed`)
