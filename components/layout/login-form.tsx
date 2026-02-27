@@ -42,6 +42,7 @@ export function LoginForm() {
         email: parsed.data.email,
         password: parsed.data.password,
         redirect: false,
+        callbackUrl: "/app",
       });
 
       if (response?.error) {
@@ -50,9 +51,29 @@ export function LoginForm() {
         return;
       }
 
-      toast.success("Login berhasil. Selamat datang di Solvix ERP.");
-      router.push("/app");
-      router.refresh();
+      let hasRedirected = false;
+      const redirectToDashboard = () => {
+        if (hasRedirected) return;
+        hasRedirected = true;
+        window.location.assign("/app");
+      };
+
+      toast.success("Login berhasil. Selamat datang di Solvix ERP.", {
+        description: "Anda akan diarahkan ke dashboard.",
+        action: {
+          label: "Buka Dashboard",
+          onClick: () => {
+            redirectToDashboard();
+          },
+        },
+        duration: 1200,
+      });
+
+      window.setTimeout(() => {
+        redirectToDashboard();
+      }, 700);
+
+      router.prefetch("/app");
     });
   }
 
